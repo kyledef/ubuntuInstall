@@ -32,11 +32,13 @@ sudo service mongod start
 echo "Installing Composer ... "
 curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
+composer --version
 
 
 #Configure Node
 echo "Installing Mobile Dev Tools"
 sudo npm install -g cordova ionic yo grunt-cli
+cordova -v
 
 
 
