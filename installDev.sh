@@ -53,3 +53,6 @@ echo "Attempting to pull down android packages"
 android list sdk
 
 android update sdk --no-ui --filter android-19,tools,platform-tools
+
+echo "Configure Git for default message"
+git config --global push.default simple
