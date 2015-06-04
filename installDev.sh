@@ -9,6 +9,9 @@ sudo add-apt-repository -y ppa:webupd8team/unstable
 sudo add-apt-repository -y ppa:webupd8team/sublime-text-3
 # https://launchpad.net/~webupd8team/+archive/ubuntu/java
 sudo add-apt-repository -y ppa:webupd8team/java
+# http://www.omgubuntu.co.uk/2015/05/how-to-install-microsoft-visual-studio-code-in-ubuntu
+sudo add-apt-repository -y ppa:ubuntu-desktop/ubuntu-make
+
 # https://nodesource.com/blog/nodejs-v012-iojs-and-the-nodesource-linux-repositories
 curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
 
@@ -56,3 +59,11 @@ android update sdk --no-ui --filter android-19,tools,platform-tools
 
 echo "Configure Git for default message"
 git config --global push.default simple
+
+echo "Installing visual studio code"
+wget http://go.microsoft.com/fwlink/?LinkID=534108 -O VScode.zip
+unzip VScode.zip
+mv VSCode-linux-x64 ~/tools/visual-studio-code
+
+echo "export PATH=~/tools/visual-studio-code:$PATH" >> ~/.bashrc
+source ~/.bashrc
