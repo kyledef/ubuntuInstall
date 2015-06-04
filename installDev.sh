@@ -40,6 +40,16 @@ echo "Installing Mobile Dev Tools"
 sudo npm install -g cordova ionic yo grunt-cli
 cordova -v
 
+echo "Installing the Android SDK"
+wget http://dl.google.com/android/android-sdk_r24.2-linux.tgz
+tar -xvzf android-sdk_r24.2-linux.tgz
+mkdir ~/tools
+mv android-sdk-linux/ ~/tools/android-sdk
 
+echo "export PATH=~/tools/android-sdk/tools:~/tools/android-sdk/platform-tools:$PATH" >> ~/.bashrc
+source ~/.bashrc
 
+echo "Attempting to pull down android packages"
+android list sdk
 
+android update sdk --no-ui --filter android-19,tools,platform-tools
