@@ -17,7 +17,7 @@ curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
 
 sudo echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
 
-sudo apt-get install -y guake sublime-text-installer oracle-java8-installer nodejs git apache2 apache2-utils mysql-server libapache2-mod-auth-mysql php5-mysql php5 libapache2-mod-php5 php5-mcrypt php5-oauth php5-curl phpmyadmin python-pip python-virtualenv mongodb
+sudo apt-get install -y guake sublime-text-installer oracle-java8-installer nodejs git apache2 apache2-utils mysql-server libapache2-mod-auth-mysql php5-mysql php5 libapache2-mod-php5 php5-mcrypt php5-oauth php5-curl phpmyadmin python-pip python-virtualenv mongodb libc6:i386 libstdc++6:i386 ant lib32z1 lib32z1-dev nautilus-open-terminal
 
 # Configure MYSQL DB
 sudo mysql_install_db
@@ -25,8 +25,9 @@ sudo /usr/bin/mysql_secure_installation
 
 # Configure Apache
 sudo a2enmod rewrite
-sudo service apache2 restart
 echo "Change the default.conf file to AllowOverride All"
+sed -i '/AllowOverride None/c AllowOverride All' /etc/apache2/sites-available/default.confg
+sudo service apache2 restart
 
 # Configure Mongodb
 sudo service mongod start
@@ -40,7 +41,7 @@ composer --version
 
 #Configure Node
 echo "Installing Mobile Dev Tools"
-sudo npm install -g cordova ionic yo grunt-cli
+sudo npm install -g cordova ionic yo grunt-cli bower
 cordova -v
 
 echo "Installing the Android SDK"
@@ -49,21 +50,23 @@ tar -xvzf android-sdk_r24.2-linux.tgz
 mkdir ~/tools
 mv android-sdk-linux/ ~/tools/android-sdk
 
-echo "export PATH=~/tools/android-sdk/tools:~/tools/android-sdk/platform-tools:$PATH" >> ~/.bashrc
-source ~/.bashrc
-
-echo "Attempting to pull down android packages"
-android list sdk
-
-android update sdk --no-ui --filter android-19,tools,platform-tools
-
-echo "Configure Git for default message"
-git config --global push.default simple
-
 echo "Installing visual studio code"
 wget http://go.microsoft.com/fwlink/?LinkID=534108 -O VScode.zip
 unzip VScode.zip
 mv VSCode-linux-x64 ~/tools/visual-studio-code
 
-echo "export PATH=~/tools/visual-studio-code:$PATH" >> ~/.bashrc
+echo "export PATH=~/tools/visual-studio-code:~/tools/android-sdk/tools:~/tools/android-sdk/platform-tools:$PATH" >> ~/.bashrc
 source ~/.bashrc
+
+
+echo "Attempting to pull down android packages"
+android list sdk -u --all --extended
+
+android update sdk --no-ui --filter android-22,android-19,tools,platform-tools,build-tools 
+
+echo "Configure Git for default message"
+git config --global push.default simple
+
+
+echo "Installing Heroku (Without logging in)"
+wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
