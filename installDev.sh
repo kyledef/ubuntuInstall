@@ -17,7 +17,7 @@ curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
 
 sudo echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
 
-sudo apt-get install -y guake sublime-text-installer oracle-java8-installer nodejs git apache2 apache2-utils mysql-server libapache2-mod-auth-mysql php5-mysql php5 libapache2-mod-php5 php5-mcrypt php5-oauth php5-curl phpmyadmin python-pip python-virtualenv mongodb libc6:i386 libstdc++6:i386 ant lib32z1 lib32z1-dev nautilus-open-terminal
+sudo apt-get install -y guake sublime-text-installer oracle-java8-installer nodejs git apache2 apache2-utils mysql-server libapache2-mod-auth-mysql php5-mysql php5 libapache2-mod-php5 php5-mcrypt php5-oauth php5-curl phpmyadmin python-pip python-virtualenv mongodb libc6:i386 libstdc++6:i386 ant lib32z1 lib32z1-dev nautilus-open-terminal python-dev libblas-dev liblapack-dev python-dev libatlas-base-dev gfortran
 
 # Configure MYSQL DB
 sudo mysql_install_db
@@ -41,8 +41,16 @@ composer --version
 
 #Configure Node
 echo "Installing Mobile Dev Tools"
-sudo npm install -g cordova ionic yo grunt-cli bower
+sudo npm install -g cordova ionic yo grunt-cli bower nodemon gulp
+
+echo "Testing Node Packages Installs"
 cordova -v
+ionic -v
+yo --version
+grunt --version
+bower -v
+nodemon -v
+gulp -v
 
 echo "Installing the Android SDK"
 wget http://dl.google.com/android/android-sdk_r24.2-linux.tgz
@@ -58,6 +66,8 @@ mv VSCode-linux-x64 ~/tools/visual-studio-code
 echo "export PATH=~/tools/visual-studio-code:~/tools/android-sdk/tools:~/tools/android-sdk/platform-tools:$PATH" >> ~/.bashrc
 source ~/.bashrc
 
+echo "Testing Android Install"
+android -h
 
 echo "Attempting to pull down android packages"
 android list sdk -u --all --extended
