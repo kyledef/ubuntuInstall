@@ -58,12 +58,22 @@ tar -xvzf android-sdk_r24.2-linux.tgz
 mkdir ~/tools
 mv android-sdk-linux/ ~/tools/android-sdk
 
+echo "Installing the Android Studio IDE"
+wget https://dl.google.com/dl/android/studio/ide-zips/1.3.1.0/android-studio-ide-141.2135290-linux.zip -O android-studio.zip
+unzip android-studio.zip
+mv android-studio ~/tools/android-studio
+
+
 echo "Installing visual studio code"
-wget http://go.microsoft.com/fwlink/?LinkID=534108 -O VScode.zip
+wget http://go.microsoft.com/fwlink/?LinkID=534108 -O VScode.zip #Need to organize better download Link
 unzip VScode.zip
 mv VSCode-linux-x64 ~/tools/visual-studio-code
 
-echo "export PATH=~/tools/visual-studio-code:~/tools/android-sdk/tools:~/tools/android-sdk/platform-tools:$PATH" >> ~/.bashrc
+echo "Configuring Environment for VSCode"
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+sudo sysctl --system
+
+echo "export PATH=~/tools/android-studio/bin:~/tools/visual-studio-code:~/tools/android-sdk/tools:~/tools/android-sdk/platform-tools:$PATH" >> ~/.bashrc
 source ~/.bashrc
 
 echo "Testing Android Install"
