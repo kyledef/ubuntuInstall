@@ -11,7 +11,7 @@ sudo add-apt-repository -y ppa:webupd8team/java
 # http://www.webupd8.org/2014/05/install-atom-text-editor-in-ubuntu-via-ppa.html
 sudo add-apt-repository -y ppa:webupd8team/atom
 # https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
 sudo apt-get update && sudo apt-get dist-upgrade -y
 
 # Accept Oracle Liscense

@@ -73,9 +73,11 @@ wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 
 
 echo "Installing visual studio code"
-wget https://az764295.vo.msecnd.net/public/0.9.1/VSCode-linux64.zip -O VScode.zip #Need to organize better download Link
-unzip VScode.zip
-mv VSCode-linux-x64 ~/tools/visual-studio-code
+wget https://az764295.vo.msecnd.net/stable/653f8733dd5a5c43d66d7168b4701f94d72b62e5/code_1.10.1-1488415350_amd64.deb -O code.deb
+sudo dpkg -i code.deb
+# wget https://az764295.vo.msecnd.net/public/0.9.1/VSCode-linux64.zip -O VScode.zip #Need to organize better download Link
+# unzip VScode.zip
+# mv VSCode-linux-x64 ~/tools/visual-studio-code
 
 echo "Configuring Environment for VSCode"
 echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
