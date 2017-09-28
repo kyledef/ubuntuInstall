@@ -21,3 +21,6 @@ sudo apt install -y apache2 phpmyadmin mysql-client mysql-server
 
 echo "Installing python tools"
 sudo apt install -y python3-pip python3-django libmysqlclient-dev python3-mysql.connector
+
+sudo pip3 install virtualenv
+sudo pip install virtualenv
