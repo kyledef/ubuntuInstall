@@ -8,17 +8,27 @@ sudo apt-get update \
         terminator \
         zsh \
         powerline fonts-powerline \
+        htop
 
 echo "Installing Nodejs"
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - \
     && sudo apt-get install -y nodejs
 
+ZSH_PLUGIN_DIR="$HOME/.oh-my-zsh/custom/plugins"
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh \
     && cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc \
     && chsh -s /bin/zsh \
-    && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh-syntax-highlighting" --depth 1 \
-    && echo "source $HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> "$HOME/.zshrc" \
-    && echo "need to manully change them to ZSH_THEME='agnoster'"
+    && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_PLUGIN_DIR/zsh-syntax-highlighting" --depth 1 \
+    && echo "source $ZSH_PLUGIN_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> "$HOME/.zshrc" \
+    && git clone https://github.com/esc/conda-zsh-completion.git "$ZSH_PLUGIN_DIR/conda-zsh-completion" --depth 1 \
+    && echo "source $ZSH_PLUGIN_DIR/conda-zsh-completion/conda-zsh-completion.zsh" >> "$HOME/.zshrc" \
+    && git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_PLUGIN_DIR/zsh-autosuggestions" --depth 1\
+    && echo "source $ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" >> "$HOME/.zshrc" \
+    && echo "need to manully change them to ZSH_THEME='agnoster' and mannually add plugins 'zsh-syntax-highlighting', 'conda-zsh-completion', 'zsh-autosuggestions'"
+
+
+echo "Attempting to change the default terminal"
+sudo update-alternatives --config x-terminal-emulator
 
 echo "Install VS Code"
 sudo snap install vscode --classic
@@ -35,8 +45,6 @@ sudo snap install chromium
 echo "Install Heroku"
 sudo snap install --classic heroku
 
-echo "Attempting to change the default terminal"
-sudo update-alternatives --config x-terminal-emulator
 
 echo "Install Digital Ocean Command Line Tool"
 sudo snap install doctl
