@@ -13,7 +13,7 @@ sudo apt-get update \
         gnome-tweak-tool \
         unrar zip unzip p7zip-full p7zip-rar rar \
         openjdk-14-jdk \
-        lm-sensors psensor hddtemp \
+        lm-sensors psensor hddtemp cpufrequtils\
         htop
 
 echo "Installing Nodejs"
