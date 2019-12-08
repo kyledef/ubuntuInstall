@@ -6,6 +6,9 @@
 * Hide Activities: https://extensions.gnome.org/extension/744/hide-activities-button/
 * Panel OSD: https://extensions.gnome.org/extension/708/panel-osd/
 * Remove Down Arrows: https://extensions.gnome.org/extension/800/remove-dropdown-arrows/
+* Horizontal Spacing: https://extensions.gnome.org/extension/355/status-area-horizontal-spacing/
+* Workspace to Dock: https://extensions.gnome.org/extension/427/workspaces-to-dock/
+
 
 ### Challenges with installation
 * Sensors: https://extensions.gnome.org/extension/82/cpu-temperature-indicator/
