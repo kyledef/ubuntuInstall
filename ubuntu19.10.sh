@@ -89,3 +89,9 @@ sudo sensors-detect --auto
 
 echo "Installing Additional Packages"
 sudo apt install -y ubuntu-restricted-extras
+
+echo "Configuring Docker"
+sudo usermod -aG docker ${USER} \
+    && sudo systemctl start docker \
+    && sudo systemctl enable docker \
+    && echo "Successfully configured for docker"
