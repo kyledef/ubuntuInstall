@@ -14,7 +14,17 @@ sudo apt-get update \
         unrar zip unzip p7zip-full p7zip-rar rar \
         openjdk-14-jdk \
         lm-sensors psensor hddtemp cpufrequtils\
-        htop
+        htop \
+        preload
+
+sudo add-apt-repository -y ppa:apt-fast/stable \
+    && DEBIAN_FRONTEND=noninteractive sudo apt-get -y install apt-fast \
+    && sudo su \
+    && echo debconf apt-fast/maxdownloads string 16 | debconf-set-selections \
+    && echo debconf apt-fast/dlflag boolean true | debconf-set-selections \
+    && echo debconf apt-fast/aptmanager string apt-get | debconf-set-selections \
+    && exit
+    
 
 echo "Installing Nodejs"
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - \
